@@ -314,7 +314,7 @@ for (i in 1:length(outlier_leads)) {
   
   # Write to outfile
   
-  write_tsv(summary, paste0('results/', outlier_leads[i], '-summary.tsv'))
+  write_tsv(summary, paste0('results/', sample_id, '-', outlier_leads[i], '-summary.tsv'))
   
 }
 

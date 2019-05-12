@@ -242,7 +242,7 @@ for (i in 1:length(outlier_leads)) {
   
   summary <- summary %>%
     mutate(exceeds_threshold = (expression > threshold),
-           percent_difference = abs(expression - threshold))
+           percent_difference = 100 * ((abs(expression - threshold)) / expression))
   
   # Get accuracy distributions
   
@@ -258,14 +258,24 @@ for (i in 1:length(outlier_leads)) {
   # Calculate gene expression measurement accuracy stats
   
   summary <- summary %>%
-    mutate(avg = lapply(measurement_stats_filtered, compute_avg),
-           min = lapply(measurement_stats_filtered, compute_min),
-           max = lapply(measurement_stats_filtered, compute_max),
+    mutate(avg = NA,
+           min = NA,
+           max = NA,
            S1 = NA,
            S2 = NA,
            S3 = NA,
            S4 = NA,
            S5 = NA)
+  
+  avgs <- lapply(measurement_stats_filtered, compute_avg)
+  mins <- lapply(measurement_stats_filtered, compute_min)
+  maxs <- lapply(measurement_stats_filtered, compute_max)
+  
+  for (j in 1:5) {
+    if (!(is.null(avgs[[j]]))) summary$avg[j] <- avgs[[j]]
+    if (!(is.null(mins[[j]]))) summary$min[j] <- mins[[j]]
+    if (!(is.null(maxs[[j]]))) summary$max[j] <- maxs[[j]]
+  }
   
   sample_info <- lapply(measurement_stats_filtered, get_sample_info)
   
@@ -288,7 +298,7 @@ for (i in 1:length(outlier_leads)) {
            'Exceeds Threshold' = exceeds_threshold,
            'Percent Difference' = percent_difference,
            'Mean Accuracy' = avg,
-           'Minumum Accuracy' = min,
+           'Minimum Accuracy' = min,
            'Maximum Accuracy' = max,
            'Sample 1 Accuracy' = S1,
            'Sample 2 Accuracy' = S2,
@@ -301,6 +311,10 @@ for (i in 1:length(outlier_leads)) {
   summary$Cohort[summary$Cohort == 'pandis_thresholds'] <- 'Inferred Disease'
   summary$Cohort[summary$Cohort == 'first_degree_thresholds'] <- 'First Degree'
   summary$Cohort[summary$Cohort == 'first_and_second_degree_thresholds'] <- 'First & Second Degree'
+  
+  # Write to outfile
+  
+  write_tsv(summary, paste0('results/', outlier_leads[i], '-summary.tsv'))
   
 }
 

@@ -31,9 +31,9 @@ The purpose of this Rmd is to quantify the accuracy of outlier leads.
 
 ```{r echo = TRUE}
 
-sample_id <- 'TH34_1447_S01'
-outlier_leads <- c('PARP1', 'CCNE1')
-umend_depth <- 57.3
+sample_id <- 'TH34_1455_S01'
+outlier_leads <- c('FGFR3', 'ERBB2', 'CDK9', 'IGF2')
+umend_depth <- 51.5
 
 ```
 

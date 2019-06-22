@@ -1,0 +1,311 @@
+---
+title: "Accuracy of gene expression measurements"
+author: "Jackie Roger & Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  # pdf_document: default
+  # fig_caption: yes
+---
+
+```{r setup, include = FALSE}
+
+library(magrittr)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(plotly)
+library(tidyr)
+library(RColorBrewer)
+library(knitr)
+library(forcats)
+library(jsonlite)
+
+```
+
+### Background
+
+The purpose of this Rmd is to quantify the accuracy of outlier leads.
+
+### USER INPUT: sample id, outlier leads & sequencing depth (measured in million UMEND reads)
+
+```{r echo = TRUE}
+
+sample_id <- 'TH34_1455_S01'
+outlier_leads <- c('FGFR3', 'ERBB2', 'CDK9', 'IGF2')
+umend_depth <- 51.5
+
+```
+
+### Read in data
+
+```{r echo = TRUE}
+
+# Load outlier data
+
+outlier_info <- read_tsv(paste0('data/sample_in/outlier_results_', sample_id), col_types = cols())
+threshold_info <- fromJSON('data/sample_in/3.json')
+
+# Load expression data & groom read counts
+
+expression_results_raw <- read_tsv("data/in/expression_log2tpm1.txt.gz", col_types = cols())
+read_counts_raw <- read_tsv("data/in/read_counts.txt", 
+                            col_names = c("sample_id", "measurement", "read_count"))
+evenly_selected_subsamples <-
+  read_tsv(paste0("data/in/evenly_selected_subsamples_with_binwidth_4.tsv"), col_types = cols())
+read_counts_anno <- read_counts_raw %>% 
+  mutate(target_UMEND_count = as.numeric(gsub("^.*_est([0-9]*)M_.*$", "\\1", sample_id)),
+         parent_id = gsub("_est.*$", "", sample_id)) %>%
+  spread(measurement, read_count)
+read_counts <- left_join(read_counts_anno, evenly_selected_subsamples %>%
+                           select(sample_id, bin_median), by = "sample_id")
+
+# Calculate per gene expression
+
+long_expression_results <- expression_results_raw %>% gather(sample_id, expression, -gene)
+long_expression_results_anno <- long_expression_results %>%
+  dplyr::filter( sample_id %in% evenly_selected_subsamples$sample_id) %>%
+  left_join(read_counts %>%
+              select(sample_id, target_UMEND_count, parent_id, UMEND, bin_median),
+            by = "sample_id")
+abundance_step_1 <- long_expression_results_anno %>% 
+  group_by(parent_id, gene) %>%
+  mutate(expression_at_max_depth = expression[target_UMEND_count == max(target_UMEND_count)],
+         max_expression_of_gene = max(expression),
+         f_expression_at_max_depth_Gt0 = expression_at_max_depth > 0) 
+
+```
+
+### Initial setup
+
+```{r echo = TRUE}
+
+# Lists of cohort names, expression bins, & UMEND depth bins
+
+cohort_names <- c('pancan_thresholds',
+                  'nof1_disease_thresholds',
+                  'pandis_thresholds',
+                  'first_degree_thresholds',
+                  'first_and_second_degree_thresholds')
+
+expression_bins_all <- c('0-1', '1-3', '3-5', '5-7', '7-10', '10-15')
+
+umend_depth_bins_all <- seq(0, 44, 4)
+
+# Figure out UMEND depth bin
+
+if (umend_depth >= 42) {
+  umend_depth_bin <- 44
+} else {
+  umend_depth <- round(umend_depth / 4) * 4
+}
+
+```
+
+### Build helper functions
+
+```{r echo = TRUE}
+
+# Get outlier thresholds
+
+get_thresholds <- function(gene, cohort) {
+  these_thresholds <- threshold_info[[cohort]]
+  this_threshold <- these_thresholds$high[gene]
+  if (is.null(this_threshold)) this_threshold <- NA
+  return (this_threshold)
+}
+
+# Figure out gene expression level bin
+
+get_expression_bin <- function(expression) {
+  exp_bins <- strsplit(expression_bins_all, '-')
+  for (j in 1:length(exp_bins)) {
+    if ((expression >= as.numeric(exp_bins[[j]][1])) &&
+        (expression < as.numeric(exp_bins[[j]][2]))) {
+      expression_bin <- expression_bins_all[j]
+    }
+  }
+  return (expression_bin)
+}
+
+# Get accuracy distributions
+
+get_accuracy_distributions <- function(threshold) {
+  if (!(is.na(threshold))) {
+    
+    # Set accuracy threshold and get accuracy info
+    
+    threshold_for_percent_of_total <- threshold
+    abundance_step_2 <- abundance_step_1 %>%
+      dplyr::filter(f_expression_at_max_depth_Gt0)  %>% 
+      mutate(within_accuracy_threshold_of_deepest_val =
+               expression > (1 - threshold_for_percent_of_total / 100) * expression_at_max_depth &
+               expression < (1 + threshold_for_percent_of_total / 100) * expression_at_max_depth)
+    non_zero_abundance <- abundance_step_2
+    
+    # Make expression bins and generate summary statistics
+    
+    break_sequence <- c(0, 1, 3, 5, 7, 10, 20, 30, 50,
+                        ceiling(max(non_zero_abundance$expression_at_max_depth)))
+    set.seed(1)
+    abundance_by_expression_bin <- non_zero_abundance %>% 
+      ungroup() %>% 
+      mutate(expression_bin = cut(expression_at_max_depth, breaks = break_sequence, dig.lab = 6))
+    abundance_stats <- abundance_by_expression_bin	%>% 
+      group_by(expression_bin, bin_median, UMEND, parent_id ) %>%
+      summarize(pct_accurately_measured = sum(within_accuracy_threshold_of_deepest_val) / n(),
+                n_genes_in_bin = length(unique(gene)),
+                expression_bin_label = paste0(gsub("]", "",
+                                                   gsub(",", "-",
+                                                        gsub("[\\(]*", "",
+                                                             unique(expression_bin)))),
+                                              " (n=", n_genes_in_bin, ")")) 
+    abundance_stats <- abundance_stats %>%
+      mutate(min_bin_label = gsub(" .*$", "", expression_bin_label),
+             pct_accurately_measured = pct_accurately_measured * 100)
+    
+    return(abundance_stats)
+    
+  }
+}
+
+# Filter results
+
+filter_results <- function(stats, exp_bin, depth_bin) {
+  if (!(is.null(stats))) {
+    stats_filtered <- stats %>%
+      filter((bin_median == depth_bin) &
+               (min_bin_label == exp_bin)) %>%
+      arrange(parent_id)
+    return(stats_filtered)
+  }
+}
+
+# Calculate gene expression measurement accuracy stats
+
+compute_stat <- function(tib, fun) {
+  if (!(is.null(tib))) {
+    stat <- fun(tib$pct_accurately_measured)
+    return (stat)
+  }
+}
+
+get_sample_info <- function(tib) {
+  if (!(is.null(tib))) {
+    info <- tib$pct_accurately_measured
+    return (info)
+  }
+}
+
+```
+
+### Do analyses and write results for each outlier lead
+
+```{r echo = TRUE}
+
+#for (i in 1:length(outlier_leads)) {
+  i = 1
+  # Get outlier thresholds & start building summary tibble
+  
+  thresholds <- lapply(cohort_names, get_thresholds, gene = outlier_leads[i]) %>%
+    unlist %>%
+    as.numeric
+  
+  this_expr <- outlier_info %>% filter(Gene == outlier_leads[i]) %>% pull(sample)
+  
+  summary <- tibble(sample = sample_id,
+                    gene = outlier_leads[i],
+                    cohort = cohort_names,
+                    expression = this_expr,
+                    threshold = thresholds)
+  
+  # Figure out gene expression level bin
+  
+  expression_bin <- get_expression_bin(summary$expression[1])
+  
+  # Figure out if expression exceeds each threshold & calculate percent difference
+  
+  summary <- summary %>%
+    mutate(exceeds_threshold = (expression > threshold),
+           percent_difference = 100 * ((abs(expression - threshold)) / expression))
+  
+  # Get accuracy distributions
+  
+  measurement_stats_all <- lapply(summary$percent_difference, get_accuracy_distributions)
+  
+  # Filter results
+  
+  measurement_stats_filtered <- lapply(measurement_stats_all,
+                                       filter_results,
+                                       exp_bin = expression_bin,
+                                       depth_bin = umend_depth_bin)
+  
+  # Calculate gene expression measurement accuracy stats
+  
+  summary <- summary %>%
+    mutate(avg = NA,
+           min = NA,
+           max = NA,
+           S1 = NA,
+           S2 = NA,
+           S3 = NA,
+           S4 = NA,
+           S5 = NA)
+  
+  avgs <- lapply(measurement_stats_filtered, compute_stat, fun = mean)
+  mins <- lapply(measurement_stats_filtered, compute_stat, fun = min)
+  maxs <- lapply(measurement_stats_filtered, compute_stat, fun = max)
+  
+  for (j in 1:5) {
+    if (!(is.null(avgs[[j]]))) summary$avg[j] <- avgs[[j]]
+    if (!(is.null(mins[[j]]))) summary$min[j] <- mins[[j]]
+    if (!(is.null(maxs[[j]]))) summary$max[j] <- maxs[[j]]
+  }
+  
+  sample_info <- lapply(measurement_stats_filtered, get_sample_info)
+  
+  for (j in 1:5) {
+    if (!(is.null(sample_info[[j]]))) summary$S1[j] <- sample_info[[j]][1]
+    if (!(is.null(sample_info[[j]]))) summary$S2[j] <- sample_info[[j]][2]
+    if (!(is.null(sample_info[[j]]))) summary$S3[j] <- sample_info[[j]][3]
+    if (!(is.null(sample_info[[j]]))) summary$S4[j] <- sample_info[[j]][4]
+    if (!(is.null(sample_info[[j]]))) summary$S5[j] <- sample_info[[j]][5]
+  }
+  
+  # Clean up names for writing to outfile
+  
+  summary <- summary %>%
+    rename(Sample = sample,
+           Gene = gene,
+           Cohort = cohort,
+           Expression = expression,
+           Threshold = threshold,
+           'Exceeds Threshold' = exceeds_threshold,
+           'Percent Difference' = percent_difference,
+           'Mean Accuracy' = avg,
+           'Minimum Accuracy' = min,
+           'Maximum Accuracy' = max,
+           'Sample 1 Accuracy' = S1,
+           'Sample 2 Accuracy' = S2,
+           'Sample 3 Accuracy' = S3,
+           'Sample 4 Accuracy' = S4,
+           'Sample 5 Accuracy' = S5)
+  
+  summary$Cohort[summary$Cohort == 'pancan_thresholds'] <- 'Pan-cancer'
+  summary$Cohort[summary$Cohort == 'nof1_disease_thresholds'] <- 'Same Disease'
+  summary$Cohort[summary$Cohort == 'pandis_thresholds'] <- 'Inferred Disease'
+  summary$Cohort[summary$Cohort == 'first_degree_thresholds'] <- 'First Degree'
+  summary$Cohort[summary$Cohort == 'first_and_second_degree_thresholds'] <- 'First & Second Degree'
+  
+  # Write to outfile
+  
+  write_tsv(summary, paste0('results/', sample_id, '-', outlier_leads[i], '-summary.tsv'))
+  
+  # Show short summary table & long summary table
+  
+  kable(summary[1:8], digits = 2)
+  kable(summary, digits = 2)
+  
+#}
+
+```

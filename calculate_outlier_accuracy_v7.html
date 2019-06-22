@@ -150,7 +150,7 @@ threshold_info &lt;- fromJSON(paste0(&quot;data/sample_in/&quot;, sample_id, &qu
 
 # Non-sample-specific data
 
-per_gene_expression_info &lt;- read_tsv(paste0(&quot;data/in/per_gene_expression.tsv&quot;), col_types = cols())
+per_gene_expression_info &lt;- read_tsv(paste0(&quot;data/in/per_gene_expression.tsv.gz&quot;), col_types = cols())
 cohort_names_info &lt;- read_tsv(paste0(&quot;data/in/cohort_names.tsv&quot;), col_types = cols())</code></pre>
 </div>
 <div id="figure-out-thresholds-expression-bin-mend-depth-bin" class="section level3">

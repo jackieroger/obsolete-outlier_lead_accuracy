@@ -45,7 +45,7 @@ threshold_info <- fromJSON(paste0("data/sample_in/", sample_id, "/3.json"))
 
 # Non-sample-specific data
 
-per_gene_expression_info <- read_tsv(paste0("data/in/per_gene_expression.tsv"), col_types = cols())
+per_gene_expression_info <- read_tsv(paste0("data/in/per_gene_expression.tsv.gz"), col_types = cols())
 cohort_names_info <- read_tsv(paste0("data/in/cohort_names.tsv"), col_types = cols())
 
 ```

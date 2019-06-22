@@ -55,7 +55,7 @@ abundance <- long_expression_results_anno %>%
          max_expression_of_gene = max(expression),
          f_expression_at_max_depth_Gt0 = expression_at_max_depth > 0) 
 
-write_tsv(abundance, paste0("data/in/per_gene_expression.tsv"))
+write_tsv(abundance, paste0("data/in/per_gene_expression.tsv.gz"))
 
 ```
 

@@ -16,6 +16,7 @@ library(magrittr)
 library(dplyr)
 library(tidyr)
 library(knitr)
+library(stringr)
 
 ```
 
@@ -118,7 +119,6 @@ measurement_stats_all <- lapply(summary$percent_difference, function(threshold) 
     # Make expression bins and generate summary statistics
     break_sequence <- c(0, 1, 3, 5, 7, 10, 20, 30, 50,
                         ceiling(max(non_zero_abundance$expression_at_max_depth)))
-    set.seed(1)
     abundance_by_expression_bin <- non_zero_abundance %>% 
       ungroup() %>% 
       mutate(expression_bin = cut(expression_at_max_depth, breaks = break_sequence, dig.lab = 6))
@@ -195,17 +195,12 @@ summary <- summary %>%
 
 # Clean up names for writing to outfile
 
+names(summary) <- gsub("_", " ", str_to_sentence(names(summary)))
+
 summary <- summary %>%
-  rename("Sample" = sample,
-         "Gene" = gene,
-         "Cohort" = cohort,
-         "Expression" = expression,
-         "Threshold" = threshold,
-         "Exceeds Threshold" = exceeds_threshold,
-         "Percent Difference" = percent_difference,
-         "Mean Accuracy" = avg,
-         "Minimum Accuracy" = min,
-         "Maximum Accuracy" = max,
+  rename("Mean Accuracy" = Avg,
+         "Minimum Accuracy" = Min,
+         "Maximum Accuracy" = Max,
          "Sample 1 Accuracy" = S1,
          "Sample 2 Accuracy" = S2,
          "Sample 3 Accuracy" = S3,

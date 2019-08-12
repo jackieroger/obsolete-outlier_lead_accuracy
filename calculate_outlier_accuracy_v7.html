@@ -123,7 +123,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Accuracy of gene expression measurements</h1>
 <h4 class="author"><em>Jackie Roger &amp; Holly Beale</em></h4>
-<h4 class="date"><em>21 June, 2019</em></h4>
+<h4 class="date"><em>12 August, 2019</em></h4>
 
 </div>
 
@@ -215,7 +215,6 @@ measurement_stats_all &lt;- lapply(summary$percent_difference, function(threshol
     # Make expression bins and generate summary statistics
     break_sequence &lt;- c(0, 1, 3, 5, 7, 10, 20, 30, 50,
                         ceiling(max(non_zero_abundance$expression_at_max_depth)))
-    set.seed(1)
     abundance_by_expression_bin &lt;- non_zero_abundance %&gt;% 
       ungroup() %&gt;% 
       mutate(expression_bin = cut(expression_at_max_depth, breaks = break_sequence, dig.lab = 6))
@@ -284,17 +283,12 @@ summary &lt;- summary %&gt;%
 <h3>Write summary to tsv and show tables</h3>
 <pre class="r"><code># Clean up names for writing to outfile
 
+names(summary) &lt;- gsub(&quot;_&quot;, &quot; &quot;, str_to_sentence(names(summary)))
+
 summary &lt;- summary %&gt;%
-  rename(&quot;Sample&quot; = sample,
-         &quot;Gene&quot; = gene,
-         &quot;Cohort&quot; = cohort,
-         &quot;Expression&quot; = expression,
-         &quot;Threshold&quot; = threshold,
-         &quot;Exceeds Threshold&quot; = exceeds_threshold,
-         &quot;Percent Difference&quot; = percent_difference,
-         &quot;Mean Accuracy&quot; = avg,
-         &quot;Minimum Accuracy&quot; = min,
-         &quot;Maximum Accuracy&quot; = max,
+  rename(&quot;Mean Accuracy&quot; = Avg,
+         &quot;Minimum Accuracy&quot; = Min,
+         &quot;Maximum Accuracy&quot; = Max,
          &quot;Sample 1 Accuracy&quot; = S1,
          &quot;Sample 2 Accuracy&quot; = S2,
          &quot;Sample 3 Accuracy&quot; = S3,
@@ -318,8 +312,8 @@ kable(summary[1:8], digits = 2)</code></pre>
 <th align="left">Cohort</th>
 <th align="right">Expression</th>
 <th align="right">Threshold</th>
-<th align="left">Exceeds Threshold</th>
-<th align="right">Percent Difference</th>
+<th align="left">Exceeds threshold</th>
+<th align="right">Percent difference</th>
 <th align="right">Mean Accuracy</th>
 </tr>
 </thead>
@@ -385,8 +379,8 @@ kable(summary[1:8], digits = 2)</code></pre>
 <th align="left">Cohort</th>
 <th align="right">Expression</th>
 <th align="right">Threshold</th>
-<th align="left">Exceeds Threshold</th>
-<th align="right">Percent Difference</th>
+<th align="left">Exceeds threshold</th>
+<th align="right">Percent difference</th>
 <th align="right">Mean Accuracy</th>
 <th align="right">Minimum Accuracy</th>
 <th align="right">Maximum Accuracy</th>

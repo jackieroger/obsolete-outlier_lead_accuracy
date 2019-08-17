@@ -123,7 +123,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Accuracy of gene expression measurements</h1>
 <h4 class="author"><em>Jackie Roger &amp; Holly Beale</em></h4>
-<h4 class="date"><em>12 August, 2019</em></h4>
+<h4 class="date"><em>16 August, 2019</em></h4>
 
 </div>
 
@@ -136,9 +136,9 @@ $(document).ready(function () {
 <h3>User input: sample id, outlier lead &amp; sequencing depth</h3>
 <div id="measured-in-millions-of-mapped-exonic-non-duplicate-mend-reads" class="section level5">
 <h5>(measured in millions of mapped, exonic, non-duplicate (MEND) reads)</h5>
-<pre class="r"><code>sample_id &lt;- &quot;TH34_1447_S01&quot;
-outlier_lead &lt;- &quot;PARP1&quot;
-mend_depth &lt;- 51.5</code></pre>
+<pre class="r"><code>sample_id &lt;- &quot;TH34_2292_S01&quot;
+outlier_lead &lt;- &quot;HMOX1&quot;
+mend_depth &lt;- 3.5</code></pre>
 </div>
 </div>
 <div id="read-in-data" class="section level3">
@@ -184,7 +184,13 @@ expression_bin &lt;- expression_bins_all[lapply(exp_bins, function(exp_bin) {
 
 mend_depth_bins_all &lt;- seq(0, 44, 4)
 
-if (mend_depth &gt;= 42) mend_depth_bin &lt;- 44 else mend_depth &lt;- round(mend_depth / 4) * 4</code></pre>
+if (mend_depth &gt;= 42) {
+  mend_depth_bin &lt;- 44
+} else if (mend_depth &lt; 2) {
+  mend_depth_bin &lt;- 0
+} else {
+  mend_depth_bin &lt;- round(mend_depth / 4) * 4
+}</code></pre>
 </div>
 <div id="get-all-relevant-accuracy-measurements-for-each-threshold" class="section level3">
 <h3>Get all relevant accuracy measurements for each threshold</h3>
@@ -319,54 +325,54 @@ kable(summary[1:8], digits = 2)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">TH34_1447_S01</td>
-<td align="left">PARP1</td>
+<td align="left">TH34_2292_S01</td>
+<td align="left">HMOX1</td>
 <td align="left">Pan-cancer</td>
-<td align="right">7.95</td>
-<td align="right">8.42</td>
-<td align="left">FALSE</td>
-<td align="right">5.90</td>
-<td align="right">99.96</td>
-</tr>
-<tr class="even">
-<td align="left">TH34_1447_S01</td>
-<td align="left">PARP1</td>
-<td align="left">Same Disease</td>
-<td align="right">7.95</td>
-<td align="right">8.28</td>
-<td align="left">FALSE</td>
-<td align="right">4.07</td>
-<td align="right">99.96</td>
-</tr>
-<tr class="odd">
-<td align="left">TH34_1447_S01</td>
-<td align="left">PARP1</td>
-<td align="left">Inferred Disease</td>
-<td align="right">7.95</td>
-<td align="right">7.77</td>
+<td align="right">9.41</td>
+<td align="right">8.53</td>
 <td align="left">TRUE</td>
-<td align="right">2.25</td>
+<td align="right">9.27</td>
 <td align="right">99.91</td>
 </tr>
 <tr class="even">
-<td align="left">TH34_1447_S01</td>
-<td align="left">PARP1</td>
+<td align="left">TH34_2292_S01</td>
+<td align="left">HMOX1</td>
+<td align="left">Same Disease</td>
+<td align="right">9.41</td>
+<td align="right">9.18</td>
+<td align="left">TRUE</td>
+<td align="right">2.40</td>
+<td align="right">95.49</td>
+</tr>
+<tr class="odd">
+<td align="left">TH34_2292_S01</td>
+<td align="left">HMOX1</td>
+<td align="left">Inferred Disease</td>
+<td align="right">9.41</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">TH34_2292_S01</td>
+<td align="left">HMOX1</td>
 <td align="left">First Degree</td>
-<td align="right">7.95</td>
+<td align="right">9.41</td>
 <td align="right">NA</td>
 <td align="left">NA</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">TH34_1447_S01</td>
-<td align="left">PARP1</td>
+<td align="left">TH34_2292_S01</td>
+<td align="left">HMOX1</td>
 <td align="left">First &amp; Second Degree</td>
-<td align="right">7.95</td>
-<td align="right">7.92</td>
-<td align="left">TRUE</td>
-<td align="right">0.42</td>
-<td align="right">94.52</td>
+<td align="right">9.41</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 </tbody>
 </table>
@@ -393,61 +399,61 @@ kable(summary[1:8], digits = 2)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">TH34_1447_S01</td>
-<td align="left">PARP1</td>
+<td align="left">TH34_2292_S01</td>
+<td align="left">HMOX1</td>
 <td align="left">Pan-cancer</td>
-<td align="right">7.95</td>
-<td align="right">8.42</td>
-<td align="left">FALSE</td>
-<td align="right">5.90</td>
-<td align="right">99.96</td>
-<td align="right">99.89</td>
-<td align="right">100.00</td>
-<td align="right">99.89</td>
-<td align="right">100.00</td>
-<td align="right">100.00</td>
-<td align="right">99.90</td>
-<td align="right">100.00</td>
-</tr>
-<tr class="even">
-<td align="left">TH34_1447_S01</td>
-<td align="left">PARP1</td>
-<td align="left">Same Disease</td>
-<td align="right">7.95</td>
-<td align="right">8.28</td>
-<td align="left">FALSE</td>
-<td align="right">4.07</td>
-<td align="right">99.96</td>
-<td align="right">99.89</td>
-<td align="right">100.00</td>
-<td align="right">99.89</td>
-<td align="right">100.00</td>
-<td align="right">100.00</td>
-<td align="right">99.90</td>
-<td align="right">100.00</td>
-</tr>
-<tr class="odd">
-<td align="left">TH34_1447_S01</td>
-<td align="left">PARP1</td>
-<td align="left">Inferred Disease</td>
-<td align="right">7.95</td>
-<td align="right">7.77</td>
+<td align="right">9.41</td>
+<td align="right">8.53</td>
 <td align="left">TRUE</td>
-<td align="right">2.25</td>
+<td align="right">9.27</td>
 <td align="right">99.91</td>
 <td align="right">99.80</td>
 <td align="right">100.00</td>
-<td align="right">99.89</td>
 <td align="right">100.00</td>
+<td align="right">99.88</td>
 <td align="right">99.88</td>
 <td align="right">99.80</td>
 <td align="right">100.00</td>
 </tr>
 <tr class="even">
-<td align="left">TH34_1447_S01</td>
-<td align="left">PARP1</td>
+<td align="left">TH34_2292_S01</td>
+<td align="left">HMOX1</td>
+<td align="left">Same Disease</td>
+<td align="right">9.41</td>
+<td align="right">9.18</td>
+<td align="left">TRUE</td>
+<td align="right">2.40</td>
+<td align="right">95.49</td>
+<td align="right">92.82</td>
+<td align="right">97.23</td>
+<td align="right">96.41</td>
+<td align="right">96.93</td>
+<td align="right">92.82</td>
+<td align="right">94.03</td>
+<td align="right">97.23</td>
+</tr>
+<tr class="odd">
+<td align="left">TH34_2292_S01</td>
+<td align="left">HMOX1</td>
+<td align="left">Inferred Disease</td>
+<td align="right">9.41</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">TH34_2292_S01</td>
+<td align="left">HMOX1</td>
 <td align="left">First Degree</td>
-<td align="right">7.95</td>
+<td align="right">9.41</td>
 <td align="right">NA</td>
 <td align="left">NA</td>
 <td align="right">NA</td>
@@ -461,21 +467,21 @@ kable(summary[1:8], digits = 2)</code></pre>
 <td align="right">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">TH34_1447_S01</td>
-<td align="left">PARP1</td>
+<td align="left">TH34_2292_S01</td>
+<td align="left">HMOX1</td>
 <td align="left">First &amp; Second Degree</td>
-<td align="right">7.95</td>
-<td align="right">7.92</td>
-<td align="left">TRUE</td>
-<td align="right">0.42</td>
-<td align="right">94.52</td>
-<td align="right">92.26</td>
-<td align="right">97.88</td>
-<td align="right">92.26</td>
-<td align="right">97.88</td>
-<td align="right">97.03</td>
-<td align="right">92.76</td>
-<td align="right">92.66</td>
+<td align="right">9.41</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 </tr>
 </tbody>
 </table>

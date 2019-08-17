@@ -29,9 +29,9 @@ The purpose of this Rmd is to quantify the accuracy of outlier leads.
 
 ```{r echo = TRUE}
 
-sample_id <- "TH34_1447_S01"
-outlier_lead <- "PARP1"
-mend_depth <- 51.5
+sample_id <- "TH34_2292_S01"
+outlier_lead <- "HMOX1"
+mend_depth <- 3.5
 
 ```
 
@@ -84,7 +84,13 @@ expression_bin <- expression_bins_all[lapply(exp_bins, function(exp_bin) {
 
 mend_depth_bins_all <- seq(0, 44, 4)
 
-if (mend_depth >= 42) mend_depth_bin <- 44 else mend_depth <- round(mend_depth / 4) * 4
+if (mend_depth >= 42) {
+  mend_depth_bin <- 44
+} else if (mend_depth < 2) {
+  mend_depth_bin <- 0
+} else {
+  mend_depth_bin <- round(mend_depth / 4) * 4
+}
 
 ```
 

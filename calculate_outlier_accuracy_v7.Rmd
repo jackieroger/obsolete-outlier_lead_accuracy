@@ -18,6 +18,8 @@ library(tidyr)
 library(knitr)
 library(stringr)
 
+setwd("/Users/jacquelynroger/Documents/research/treehouse/projects/outlier_lead_accuracy")
+
 ```
 
 ### Background

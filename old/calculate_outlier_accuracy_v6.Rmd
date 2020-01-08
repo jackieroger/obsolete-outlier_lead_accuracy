@@ -41,14 +41,12 @@ umend_depth <- 51.5
 
 ```{r echo = TRUE}
 
-# Outlier data
+# Load outlier data
 
 outlier_info <- read_tsv(paste0('data/sample_in/outlier_results_', sample_id), col_types = cols())
 threshold_info <- fromJSON('data/sample_in/3.json')
 
-# Expression data
-
-# Load data & groom read counts
+# Load expression data & groom read counts
 
 expression_results_raw <- read_tsv("data/in/expression_log2tpm1.txt.gz", col_types = cols())
 read_counts_raw <- read_tsv("data/in/read_counts.txt", 
@@ -99,12 +97,7 @@ umend_depth_bins_all <- seq(0, 44, 4)
 if (umend_depth >= 42) {
   umend_depth_bin <- 44
 } else {
-  for (i in 1:(length(umend_depth_bins_all) - 1)) {
-    if (((umend_depth_bins_all[i] - umend_depth) <= 2) &&
-        ((umend_depth - umend_depth_bins_all[i]) < 2)) {
-      umend_depth_bin <- umend_depth_bins_all[i]
-    }
-  }
+  umend_depth <- round(umend_depth / 4) * 4
 }
 
 ```
@@ -115,7 +108,7 @@ if (umend_depth >= 42) {
 
 # Get outlier thresholds
 
-get_thresholds <- function (gene, cohort) {
+get_thresholds <- function(gene, cohort) {
   these_thresholds <- threshold_info[[cohort]]
   this_threshold <- these_thresholds$high[gene]
   if (is.null(this_threshold)) this_threshold <- NA
@@ -137,7 +130,7 @@ get_expression_bin <- function(expression) {
 
 # Get accuracy distributions
 
-get_accuracy_distributions <- function (threshold) {
+get_accuracy_distributions <- function(threshold) {
   if (!(is.na(threshold))) {
     
     # Set accuracy threshold and get accuracy info
@@ -170,11 +163,7 @@ get_accuracy_distributions <- function (threshold) {
     abundance_stats <- abundance_stats %>%
       mutate(min_bin_label = gsub(" .*$", "", expression_bin_label),
              pct_accurately_measured = pct_accurately_measured * 100)
-    abundance_stats$parent_id[abundance_stats$parent_id == "TH_Eval_014"] <- "S1"
-    abundance_stats$parent_id[abundance_stats$parent_id == "TH_Eval_015"] <- "S2"
-    abundance_stats$parent_id[abundance_stats$parent_id == "TH_Eval_016"] <- "S3"
-    abundance_stats$parent_id[abundance_stats$parent_id == "TH_Eval_018"] <- "S4"
-    abundance_stats$parent_id[abundance_stats$parent_id == "TH_Eval_019"] <- "S5"
+    
     return(abundance_stats)
     
   }
@@ -214,14 +203,16 @@ get_sample_info <- function(tib) {
 
 ```{r echo = TRUE}
 
-for (i in 1:length(outlier_leads)) {
-  
+#for (i in 1:length(outlier_leads)) {
+  i = 1
   # Get outlier thresholds & start building summary tibble
   
   thresholds <- lapply(cohort_names, get_thresholds, gene = outlier_leads[i]) %>%
     unlist %>%
     as.numeric
+  
   this_expr <- outlier_info %>% filter(Gene == outlier_leads[i]) %>% pull(sample)
+  
   summary <- tibble(sample = sample_id,
                     gene = outlier_leads[i],
                     cohort = cohort_names,
@@ -310,6 +301,11 @@ for (i in 1:length(outlier_leads)) {
   
   write_tsv(summary, paste0('results/', sample_id, '-', outlier_leads[i], '-summary.tsv'))
   
-}
+  # Show short summary table & long summary table
+  
+  kable(summary[1:8], digits = 2)
+  kable(summary, digits = 2)
+  
+#}
 
 ```

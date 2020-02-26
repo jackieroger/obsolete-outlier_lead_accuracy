@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	HSD17B10	Pan-cancer	4.54658582901	4.66491895914078	TRUE	2.6026811014045492	41.58853622409829	37.78276913203914	44.8805776708017	44.8805776708017	43.72778059928898	37.78276913203914	38.69683257918552	42.854721139176135

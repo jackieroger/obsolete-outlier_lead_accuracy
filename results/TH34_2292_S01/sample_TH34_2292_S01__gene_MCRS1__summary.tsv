@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	MCRS1	Pan-cancer	3.67016051413	3.98670816421509	TRUE	8.624899343404515	84.65818859564013	81.91881918819189	87.15052768005926	87.15052768005926	86.38902996444897	81.91881918819189	81.9366515837104	85.89591456179014

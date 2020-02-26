@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	COX5A	Pan-cancer	5.76897825034	6.06057024002075	TRUE	5.05448238886262	93.61858511144813	91.45516074450084	95.01338688085677	95.01338688085677	94.88372093023256	92.3907177549919	91.45516074450084	94.34993924665856

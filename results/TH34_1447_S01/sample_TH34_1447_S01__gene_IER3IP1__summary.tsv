@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1447_S01	IER3IP1	Pan-cancer	2.16671544497	2.28734087944031	TRUE	5.567202410004517	78.08586626689338	72.86751361161524	83.95017793594306	74.6868718107314	83.95017793594306	81.94940688866657	76.97536108751062	72.86751361161524

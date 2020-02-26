@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	EIF2B3	Pan-cancer	2.23878685959	2.5686868429184	TRUE	14.735658372982252	54.72177498969584	50.65027869086751	58.620689655172406	58.620689655172406	57.402135231316734	50.65027869086751	51.89039932030586	55.045372050816695

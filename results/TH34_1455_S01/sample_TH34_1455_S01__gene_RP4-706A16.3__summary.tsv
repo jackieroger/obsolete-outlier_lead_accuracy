@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1455_S01	RP4-706A16.3	Pan-cancer	2.03562390973	2.04223346710205	TRUE	0.3246944261391884	8.502809925401728	6.460980036297641	10.587188612099645	7.344982217411474	10.587188612099645	10.304416178362155	7.816482582837724	6.460980036297641

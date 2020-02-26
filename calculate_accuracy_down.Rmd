@@ -32,7 +32,7 @@ The purpose of this Rmd is to quantify the accuracy of outlier leads.
 ```{r echo = TRUE}
 
 sample_id <- "TH34_2292_S01"
-outlier_lead <- "P2RY11"
+outlier_lead <- "ZNF585A"
 mend_depth <- 3.5
 
 ```
@@ -61,9 +61,11 @@ cohort_names_info <- read_tsv(paste0("data/in/cohort_names.tsv"), col_types = co
 
 cohort_names <- cohort_names_info$useful_name
 
+cohort_names <- cohort_names[[1]] # just pc for down outliers
+
 thresholds <- lapply(cohort_names, function(cohort) {
   these_thresholds <- threshold_info[[cohort]]
-  this_threshold <- these_thresholds$high[outlier_lead]
+  this_threshold <- these_thresholds$low[outlier_lead]
   if (is.null(this_threshold)) this_threshold <- NA
   return (this_threshold)
   }) %>%
@@ -108,10 +110,10 @@ summary <- tibble(sample = sample_id,
                   expression = exp,
                   threshold = thresholds)
 
-# Figure out if expression exceeds each threshold & calculate percent difference
+# Figure out if expression is below threshold & calculate percent difference
 
 summary <- summary %>%
-  mutate(exceeds_threshold = (expression > threshold),
+  mutate(below_threshold = (expression < threshold),
          percent_difference = 100 * ((abs(expression - threshold)) / expression))
 
 # Get accuracy distributions

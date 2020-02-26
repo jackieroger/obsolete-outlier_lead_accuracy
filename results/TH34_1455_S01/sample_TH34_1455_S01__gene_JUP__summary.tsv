@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1455_S01	JUP	Pan-cancer	1.53106949273	1.70695567131042	TRUE	11.487798523553828	93.01229072654935	90.05444646098003	95.65528083464342	91.17055821864852	95.55160142348754	95.65528083464342	92.62956669498725	90.05444646098003

@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	PHACTR4	Pan-cancer	2.24488705912	2.25853157043457	TRUE	0.6078039097396144	3.0275181983576687	2.5582392453908818	3.5101283438997988	3.5101283438997988	3.2740213523131674	2.5582392453908818	2.7824978759558197	3.012704174228675

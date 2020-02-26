@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1455_S01	NRM	Pan-cancer	1.6599245584	1.76049411296844	TRUE	6.058682249112507	80.33314589250632	75.53539019963702	85.48042704626334	77.33106540899954	85.48042704626334	83.96455623838787	79.35429056924383	75.53539019963702

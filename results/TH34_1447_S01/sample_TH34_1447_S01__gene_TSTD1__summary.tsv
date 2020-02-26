@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1447_S01	TSTD1	Pan-cancer	1.49057013045	1.85936975479126	TRUE	24.742185342860726	98.5419023970549	97.9434049791248	99.15678147777619	97.9434049791248	99.09252669039145	99.15678147777619	98.51316907391674	98.00362976406534

@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	RNA5-8S5	Pan-cancer	6.53356334821	7.51230621337891	TRUE	14.98023074096397	99.7035497521354	99.66777408637874	99.75698663426489	99.69879518072288	99.66777408637874	99.67620075553157	99.71799210377891	99.75698663426489

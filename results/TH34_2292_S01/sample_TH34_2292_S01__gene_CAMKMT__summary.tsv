@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	CAMKMT	Pan-cancer	0.823749360308	0.930824160575867	TRUE	12.998468396725894	5.168074821211707	4.3881218082088145	5.719275267408863	5.719275267408863	5.454829634260706	5.057604521411492	4.3881218082088145	5.220542874768661

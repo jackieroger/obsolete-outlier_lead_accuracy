@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	SDHC	Pan-cancer	5.03650333374	5.23597007989883	TRUE	3.960421207757054	88.44689686159245	85.77981651376146	90.82998661311915	90.82998661311915	90.265780730897	85.77981651376146	85.89960518894529	89.45929526123936

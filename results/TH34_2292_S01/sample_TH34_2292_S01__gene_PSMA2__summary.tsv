@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	PSMA2	Pan-cancer	4.8068395818	5.40673112869263	TRUE	12.479957707845745	92.68906543250642	90.85512594256377	94.31183341797868	93.72338455841512	94.31183341797868	90.85512594256377	91.14932126696833	93.4056619766062

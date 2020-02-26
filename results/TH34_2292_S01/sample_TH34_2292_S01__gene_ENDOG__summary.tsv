@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	ENDOG	Pan-cancer	1.28095631383	1.48696196079254	TRUE	16.082175850836993	57.871728985471485	53.608689438330714	61.65146126488325	61.65146126488325	60.51601423487545	53.608689438330714	55.16142735768904	58.42105263157895

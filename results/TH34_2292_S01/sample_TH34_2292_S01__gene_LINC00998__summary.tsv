@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	LINC00998	Pan-cancer	2.56559717585	3.33904051780701	TRUE	30.14671785724753	77.71911635165885	73.47434614834928	80.29998453687955	80.29998453687955	79.9288256227758	73.47434614834928	76.38062871707731	78.51179673321234

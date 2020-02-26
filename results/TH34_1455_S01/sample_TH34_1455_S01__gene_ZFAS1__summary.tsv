@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1455_S01	ZFAS1	Pan-cancer	5.05745027218	5.61139798164368	TRUE	10.95310244592683	99.9639097372325	99.94359842075579	99.97301672962763	99.9665327978581	99.96677740863788	99.97301672962763	99.94359842075579	99.96962332928311

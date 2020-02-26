@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	CMC2	Pan-cancer	3.60169651648	3.88008695840836	TRUE	7.7294253042850976	81.59193239131143	78.54965506176801	84.42880947972597	84.42880947972597	83.5280176062299	78.54965506176801	78.64253393665159	82.81064587218172

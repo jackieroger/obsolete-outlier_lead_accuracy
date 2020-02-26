@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	EMG1	Pan-cancer	2.53853816363	2.75990080833435	TRUE	8.720083387984639	37.96033129625621	33.97170215806774	42.152466367713004	42.152466367713004	39.7508896797153	33.97170215806774	35.70518266779949	38.221415607985485

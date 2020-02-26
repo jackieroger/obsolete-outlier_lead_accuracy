@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1447_S01	UBE2B	Pan-cancer	4.45877569908	4.71090650558472	TRUE	5.65470935343851	99.05883432668739	98.77800407331976	99.40748264770612	98.77800407331976	99.40748264770612	99.13364351034815	99.07692307692308	98.89811832513985

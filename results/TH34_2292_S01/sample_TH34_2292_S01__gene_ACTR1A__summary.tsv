@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	ACTR1A	Pan-cancer	3.94953493302	4.26829463243484	TRUE	8.070816053552441	82.7417196292491	79.78501524145676	85.539714867617107	85.539714867617107	84.5606907059421	79.78501524145676	79.92760180995475	83.8955755212748

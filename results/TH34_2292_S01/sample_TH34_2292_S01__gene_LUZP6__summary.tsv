@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	LUZP6	Pan-cancer	0	0.446386516094208	TRUE	Inf	NaN	Inf	-Inf	NA	NA	NA	NA	NA

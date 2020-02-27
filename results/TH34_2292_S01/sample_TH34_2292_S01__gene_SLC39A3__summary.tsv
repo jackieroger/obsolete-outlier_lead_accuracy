@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	SLC39A3	Pan-cancer	2.7949356628	3.16395926475525	TRUE	13.203295047785025	51.01723788854796	46.6199799914249	55.203340034018865	55.203340034018865	53.861209964412815	46.6199799914249	48.25828377230246	51.14337568058076

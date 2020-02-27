@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	UQCC2	Pan-cancer	3.344828497	3.9769474864006	TRUE	18.89839762988003	97.25428136224312	96.39018129311728	97.89794880488219	97.5745232364377	97.88386659895039	96.39018129311728	96.52488687782805	97.89794880488219

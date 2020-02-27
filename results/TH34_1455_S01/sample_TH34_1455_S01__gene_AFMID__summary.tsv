@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1455_S01	AFMID	Pan-cancer	2.31324585179	2.78411459922791	TRUE	20.355326567366358	97.8692372608145	97.01561775166229	98.74231813634414	97.01561775166229	98.70106761565836	98.74231813634414	97.7909940526763	97.09618874773139

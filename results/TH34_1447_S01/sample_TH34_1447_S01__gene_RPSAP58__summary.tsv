@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1447_S01	RPSAP58	Pan-cancer	2.55826763406	2.79305768013	TRUE	9.177696771990412	89.5383398377882	86.18874773139747	93.23843416370107	87.41301994742538	93.23843416370107	91.89652708303558	88.95497026338148	86.18874773139747

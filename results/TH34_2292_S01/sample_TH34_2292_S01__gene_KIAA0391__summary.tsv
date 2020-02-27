@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	KIAA0391	Pan-cancer	2.48284828307	2.54492747783661	TRUE	2.5003217147787336	12.408734837993691	11.03329998570816	13.885882171022113	13.885882171022113	12.597864768683273	11.03329998570816	12.022090059473237	12.50453720508167

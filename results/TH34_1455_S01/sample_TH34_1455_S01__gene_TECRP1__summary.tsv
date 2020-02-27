@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1455_S01	TECRP1	Pan-cancer	0.17632277264	0.485718131065369	TRUE	175.47101477190623	98.96307573313736	98.34207279457125	99.80436200275342	98.43556719784617	99.40606439512348	99.80436200275342	98.82731227539247	98.34207279457125

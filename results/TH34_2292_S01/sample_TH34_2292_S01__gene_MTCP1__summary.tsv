@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	MTCP1	Pan-cancer	0.97085365434	1.42157751321793	TRUE	46.42552014539601	15.958071623188859	14.280310194817478	18.220184821363603	18.220184821363603	16.153485464207566	15.274255488732699	14.280310194817478	15.86212214682295

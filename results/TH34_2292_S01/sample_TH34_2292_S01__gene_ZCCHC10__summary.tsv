@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	ZCCHC10	Pan-cancer	2.49825086753	2.76228129863739	TRUE	10.568611604984048	43.891924454461545	39.74560525939688	47.796505334776555	47.796505334776555	46.281138790035584	39.74560525939688	41.716227697536105	43.920145190562614

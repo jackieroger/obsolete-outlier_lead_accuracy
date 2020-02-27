@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	IGFBP7	Pan-cancer	4.17152710604	4.29465919733047	TRUE	2.951726985357137	46.03052558702605	41.713460612866996	49.97222736530272	49.97222736530272	48.24784154393093	41.713460612866996	42.787330316742086	47.431768096287506

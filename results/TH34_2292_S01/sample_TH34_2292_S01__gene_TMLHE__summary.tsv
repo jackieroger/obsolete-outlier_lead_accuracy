@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	TMLHE	Pan-cancer	0.97085365434	1.27154386043549	TRUE	30.971733458623422	11.536817818870613	10.308303385662947	13.243105581023066	13.243105581023066	11.894341981869335	11.180349250054345	10.308303385662947	11.05798889574337

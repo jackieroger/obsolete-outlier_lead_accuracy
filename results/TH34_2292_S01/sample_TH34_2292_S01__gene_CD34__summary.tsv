@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	CD34	Pan-cancer	0.516015147004	0.635729730129242	TRUE	23.199819582876334	8.85520165798874	7.811613391337242	10.187004293094667	10.187004293094667	9.159112222569552	8.535613361350627	7.811613391337242	8.582665021591609

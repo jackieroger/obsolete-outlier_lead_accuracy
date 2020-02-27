@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	PIGU	Pan-cancer	2.96716860753	2.98113298416138	TRUE	0.4706296971443258	2.2871063102180904	1.9865656710018582	2.659656718725839	2.659656718725839	2.3665480427046264	1.9865656710018582	2.081563296516568	2.341197822141561

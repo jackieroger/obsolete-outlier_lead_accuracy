@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	PYURF	Pan-cancer	2.55090066465	3.33543717861176	TRUE	30.755274983214743	78.31406624980843	73.9745605259397	80.93397247564559	80.93397247564559	80.42704626334519	73.9745605259397	77.12404418011894	79.11070780399274

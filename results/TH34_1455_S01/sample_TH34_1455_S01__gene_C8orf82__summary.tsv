@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1455_S01	C8orf82	Pan-cancer	1.19534759832	1.67460238933563	TRUE	40.0933411912316	99.47178953240804	99.22684397711458	99.68557953408603	99.22684397711458	99.5729537366548	99.68557953408603	99.6176720475786	99.25589836660616

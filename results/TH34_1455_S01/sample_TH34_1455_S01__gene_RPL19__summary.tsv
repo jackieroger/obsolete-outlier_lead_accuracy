@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1455_S01	RPL19	Pan-cancer	9.46579085192	9.48844242095947	TRUE	0.23929927666716566	81.61972771582637	75.89686098654708	90.44811320754717	75.89686098654708	90.44811320754717	87.0049504950495	78.57142857142857	76.17728531855957

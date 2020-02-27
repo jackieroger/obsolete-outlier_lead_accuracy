@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	PPA1	Pan-cancer	3.9909548604	4.64515745639801	TRUE	16.392132180929796	96.1129595369027	95.05855928124498	97.03741323853056	96.55619329753749	97.03741323853056	95.05855928124498	95.16742081447964	96.7452110527208

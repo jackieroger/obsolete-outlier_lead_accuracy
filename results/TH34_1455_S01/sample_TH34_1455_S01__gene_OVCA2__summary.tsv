@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1455_S01	OVCA2	Pan-cancer	3.09085343045	3.22827196121216	TRUE	4.445973704490831	98.37824871840942	97.83373449361228	99.10275943795497	97.83373449361228	99.10275943795497	98.62024707203594	98.33484162895928	97.99966095948466

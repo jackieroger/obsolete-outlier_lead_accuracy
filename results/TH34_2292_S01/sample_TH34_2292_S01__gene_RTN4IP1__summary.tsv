@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	RTN4IP1	Pan-cancer	0.815575428863	1.10863745212555	TRUE	35.933159937286234	13.102197731356714	11.840363154908266	14.851196973004438	14.851196973004438	13.410440762738357	12.600536193029491	11.840363154908266	12.808451573103023

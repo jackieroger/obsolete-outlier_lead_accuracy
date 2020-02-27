@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	FAM173B	Pan-cancer	1.21412480535	1.4639230966568	TRUE	20.574350363823573	66.22823353615847	61.55495212233815	69.80052574609556	69.80052574609556	69.09252669039145	61.55495212233815	63.61512319456245	67.07803992740472

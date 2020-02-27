@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1447_S01	ATAD1	Pan-cancer	1.79908730607	2.34876382350922	TRUE	30.55307630622751	99.07434660467713	98.69328493647913	99.4661921708185	98.74748724292563	99.4661921708185	99.35686722881235	99.10790144435005	98.69328493647913

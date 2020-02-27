@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	IPO13	Pan-cancer	2.3476656563	2.34936690330505	TRUE	0.07246547226539866	0.5271488923822126	0.37158782335286555	0.633987938766043	0.633987938766043	0.5516014234875445	0.37158782335286555	0.5522514868309261	0.5263157894736842

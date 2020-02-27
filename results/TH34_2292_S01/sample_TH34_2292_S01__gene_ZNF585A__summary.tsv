@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	ZNF585A	Pan-cancer	1.06350294231	1.7463059425354	TRUE	64.20320744410033	91.41468678314129	88.28069172502501	93.13167259786476	92.82511210762333	93.13167259786476	88.28069172502501	90.9303313508921	91.90562613430127

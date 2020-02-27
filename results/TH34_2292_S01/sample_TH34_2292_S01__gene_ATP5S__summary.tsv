@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	ATP5S	Pan-cancer	1.25701061821	1.80126023292542	TRUE	43.29713741721917	85.84355109722411	82.2495355152208	87.59857739291789	87.59857739291789	87.56227758007118	82.2495355152208	85.11045029736619	86.69691470054447

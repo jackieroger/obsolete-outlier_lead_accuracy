@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	TMEM161A	Pan-cancer	2.5210507369	2.82215517759323	TRUE	11.943608920123593	47.78684934977293	43.532942689724166	51.708674810576774	51.708674810576774	50.24911032028469	43.532942689724166	45.603228547153776	47.84029038112523

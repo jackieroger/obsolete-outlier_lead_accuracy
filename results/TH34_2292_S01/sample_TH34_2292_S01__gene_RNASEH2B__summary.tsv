@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	RNASEH2B	Pan-cancer	2.29865831556	2.78573530912399	TRUE	21.189621365945722	67.21248912443893	62.59825639559812	70.69738673264264	70.69738673264264	69.94661921708185	62.59825639559812	64.76210705182667	68.05807622504537

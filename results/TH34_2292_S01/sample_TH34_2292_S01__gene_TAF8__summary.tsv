@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	TAF8	Pan-cancer	1.76128527336	1.82932186126709	TRUE	3.8628942702335136	18.657210289874012	16.6928683721595	21.01438070202567	21.01438070202567	19.572953736654807	16.6928683721595	17.82073067119796	18.185117967332122

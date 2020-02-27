@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	HIGD1A	Pan-cancer	3.70597790168	3.84758335351944	TRUE	3.821000977238625	55.76059134220428	51.08294561206481	59.877800407331975	59.877800407331975	58.388352801760625	51.08294561206481	52.05429864253394	57.39955924733005

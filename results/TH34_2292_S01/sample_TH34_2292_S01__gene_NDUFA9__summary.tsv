@@ -1,0 +1,2 @@
+Sample	Gene	Cohort	Expression	Threshold	Below threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_2292_S01	NDUFA9	Pan-cancer	4.50589092973	4.6881315112114	TRUE	4.044496068002255	57.94906096056564	53.21674955879993	62.06258100351787	62.06258100351787	60.69070594210258	53.21674955879993	54.17194570135747	59.603322597050344

@@ -1,0 +1,6 @@
+Sample	Gene	Cohort	Expression	Threshold	Exceeds threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1412_S01	ZNF417	Pan-cancer	7.32219857485	4.28332448005676	TRUE	41.50220816505913	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1412_S01	ZNF417	Same Disease	7.32219857485	4.48303529620171	TRUE	38.77473752760729	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1412_S01	ZNF417	Inferred Disease	7.32219857485	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1412_S01	ZNF417	First Degree	7.32219857485	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1412_S01	ZNF417	First & Second Degree	7.32219857485	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA

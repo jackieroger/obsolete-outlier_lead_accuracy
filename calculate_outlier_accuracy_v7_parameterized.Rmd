@@ -1,0 +1,270 @@
+---
+author: "Jackie Roger & Holly Beale"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  html_document: default
+  # pdf_document: default
+  # fig_caption: yes
+params:
+  date: !r Sys.Date()
+  data_dir: ""
+  this_data_dir: ""
+#  outlier_lead: "P2RY11"
+#  mend_depth: 3.5
+#  this_title: "replace me"
+# title: "`r params$this_title`"
+---
+
+```{r setup, include = FALSE}
+
+library(readr)
+library(jsonlite)
+library(magrittr)
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(stringr)
+
+```
+
+### Background
+
+The purpose of this Rmd is to quantify the accuracy of outlier leads.
+
+### User input: directory containing tertiary output
+
+
+```{r echo = TRUE}
+
+
+data_dir <- params$this_data_dir
+# data_dir <- "/Users/hbeale/downloads/accuracy_data/TH34_1149_S01_tertiary_treehouse-protocol-14.4.0-e4460c5_compendium-v10_polya"
+# sample_id <- params$sample_id
+# outlier_lead <- params$outlier_lead
+# mend_depth <- params$mend_depth
+# 
+# print(paste("analysis of accuracy of gene ", outlier_lead, "in sample ", sample_id, "which has", mend_depth, "million MEND reads"))
+# 
+
+```
+
+### Read in data
+
+```{r echo = TRUE}
+
+# Sample-specific data
+outlier_json <- fromJSON(file.path(data_dir, "4.0.json"))
+
+outlier_info <- lapply(names(outlier_json[["outlier_results"]]), 
+       function(this_colname) {
+         this_data <- outlier_json[["outlier_results"]][[this_colname]]
+         this_result <- tibble(Gene = names(this_data),
+                Value = as.character(this_data))
+         colnames(this_result)[2] <- this_colname
+         return(this_result)
+       }) %>% 
+  reduce(left_join, by = "Gene")   
+
+# 3 json contains threshold info
+threshold_info <- fromJSON(file.path(data_dir, "3.json"))
+
+# 4.25 json contains read counts
+read_counts_json <- fromJSON(file.path(data_dir, "4.25.json"))
+
+mend_depth <- read_counts_json$Read_count_table$UMEND/1e6
+sample_id <- read_counts_json$Sample_id
+
+# Non-sample-specific data
+per_gene_expression_info <- read_tsv(paste0("data/in/per_gene_expression.tsv.gz"), col_types = cols())
+cohort_names_info <- read_tsv(paste0("data/in/cohort_names.tsv"), col_types = cols())
+genes_to_retain <- read_tsv("data/in/treehouseDruggableGenes_2019-06-12.txt")$gene
+
+```
+
+
+# Analyze each outlier in turn
+
+```{r echo = TRUE}
+
+
+outliers_genes_to_analyze <- outlier_info %>%
+  filter(pc_outlier == "pc_up" | pd_outlier == "pd_up",
+         Gene %in% genes_to_retain) %>% pull(Gene)
+
+
+### Figure out thresholds, expression bin & mend depth bin
+# Figure out outlier thresholds
+
+cohort_names <- cohort_names_info$useful_name
+
+for (outlier_lead in outliers_genes_to_analyze){
+  print(outlier_lead)
+  # outlier_lead <- "ADCY3"
+  
+  thresholds <- lapply(cohort_names, function(cohort) {
+    these_thresholds <- threshold_info[[cohort]]
+    this_threshold <- these_thresholds$high[outlier_lead]
+    if (is.null(this_threshold)) this_threshold <- NA
+    return (this_threshold)
+  }) %>%
+    unlist %>%
+    as.numeric
+  
+  # Figure out expression bin
+  
+  exp <- outlier_info %>% filter(Gene == outlier_lead) %>% pull(sample)
+  
+  expression_bins_all <- c("0-1", "1-3", "3-5", "5-7", "7-10", "10-15")
+  exp_bins <- strsplit(expression_bins_all, '-')
+  
+  expression_bin <- expression_bins_all[lapply(exp_bins, function(exp_bin) {
+    exp > as.numeric(exp_bin[1]) & exp < as.numeric(exp_bin[2])
+  }) %>%
+    unlist]
+  
+  # Figure out MEND depth bin
+  
+  mend_depth_bins_all <- seq(0, 44, 4)
+  
+  if (mend_depth >= 42) {
+    mend_depth_bin <- 44
+  } else if (mend_depth < 2) {
+    mend_depth_bin <- 0
+  } else {
+    mend_depth_bin <- round(mend_depth / 4) * 4
+  }
+  
+  
+  
+  ### Get all relevant accuracy measurements for each threshold
+  
+  
+  # Start building summary table
+  
+  summary <- tibble(sample = sample_id,
+                    gene = outlier_lead,
+                    cohort = cohort_names,
+                    expression = exp,
+                    threshold = thresholds) %>%
+    type_convert(col_types = cols()) # i added this to handle an error
+  # Error in expression - threshold : non-numeric argument to binary operator
+  
+  # Figure out if expression exceeds each threshold & calculate percent difference
+  
+  summary <- summary %>%
+    mutate(exceeds_threshold = (expression > threshold),
+           percent_difference = 100 * ((abs(expression - threshold)) / expression))
+  
+  # Get accuracy distributions
+  
+  measurement_stats_all <- lapply(summary$percent_difference, function(threshold) {
+    if (!(is.na(threshold))) {
+      # Set accuracy threshold and get accuracy info
+      non_zero_abundance <- per_gene_expression_info %>%
+        dplyr::filter(f_expression_at_max_depth_Gt0)  %>% 
+        mutate(within_accuracy_threshold_of_deepest_val =
+                 expression > (1 - threshold / 100) * expression_at_max_depth &
+                 expression < (1 + threshold / 100) * expression_at_max_depth)
+      # Make expression bins and generate summary statistics
+      break_sequence <- c(0, 1, 3, 5, 7, 10, 20, 30, 50,
+                          ceiling(max(non_zero_abundance$expression_at_max_depth)))
+      abundance_by_expression_bin <- non_zero_abundance %>% 
+        ungroup() %>% 
+        mutate(expression_bin = cut(expression_at_max_depth, breaks = break_sequence, dig.lab = 6))
+      abundance_stats <- abundance_by_expression_bin	%>% 
+        group_by(expression_bin, bin_median, UMEND, parent_id ) %>%
+        summarize(pct_accurately_measured = sum(within_accuracy_threshold_of_deepest_val) / n(),
+                  n_genes_in_bin = length(unique(gene)),
+                  expression_bin_label = paste0(gsub(
+                    "]", "", gsub(",", "-", gsub("[\\(]*", "", unique(expression_bin)))), " (n=", n_genes_in_bin, ")")) 
+      abundance_stats <- abundance_stats %>%
+        mutate(min_bin_label = gsub(" .*$", "", expression_bin_label),
+               pct_accurately_measured = pct_accurately_measured * 100)
+      return(abundance_stats)
+    }
+  })
+  
+  # Filter results
+  
+  measurement_stats_filtered <- lapply(measurement_stats_all, function(msa) {
+    if (!(is.null(msa))) {
+      exp <- expression_bin # for some reason it doesn't work without doing it this way
+      stats_filtered <- msa %>%
+        filter((bin_median == mend_depth_bin) && (min_bin_label == exp)) %>%
+        arrange(parent_id)
+      return(stats_filtered)
+    }
+  })
+  
+  
+  ### Calculate gene expression measurement accuracy stats
+  
+  
+  
+  # Get accuracy stats
+  
+  get_stats <- function(fun, s) {
+    stats = lapply(measurement_stats_filtered, function(msf) {
+      if (!(is.null(msf))) {
+        if (!(is.na(fun))) {
+          stat <- fun(msf$pct_accurately_measured)
+        } else if (!(is.na(s))) {
+          stat <- msf$pct_accurately_measured[s]
+        }
+        return (stat)
+      } else {
+        return (NA)
+      }
+    }) %>%
+      unlist %>%
+      as.numeric
+    return (stats)
+  }
+  
+  # Add accuracy stats to summary table
+  
+  summary <- summary %>%
+    mutate(
+      avg = get_stats(mean, NA),
+      min = get_stats(min, NA),
+      max = get_stats(max, NA),
+      S1 = get_stats(NA, 1),
+      S2 = get_stats(NA, 2),
+      S3 = get_stats(NA, 3),
+      S4 = get_stats(NA, 4),
+      S5 = get_stats(NA, 5)
+    )
+  
+  
+  
+  ### Write summary to tsv and show tables
+  
+  
+  # Clean up names for writing to outfile
+  
+  names(summary) <- gsub("_", " ", str_to_sentence(names(summary)))
+  
+  summary <- summary %>%
+    rename("Mean Accuracy" = Avg,
+           "Minimum Accuracy" = Min,
+           "Maximum Accuracy" = Max,
+           "Sample 1 Accuracy" = S1,
+           "Sample 2 Accuracy" = S2,
+           "Sample 3 Accuracy" = S3,
+           "Sample 4 Accuracy" = S4,
+           "Sample 5 Accuracy" = S5)
+  
+  summary$Cohort <- cohort_names_info$pretty_name[match(summary$Cohort, cohort_names_info$useful_name)]
+  
+  # Write to outfile
+  
+  if (! file.exists(file.path("results", sample_id))) dir.create(file.path("results", sample_id))
+  
+  write_tsv(summary, paste0("results/", sample_id, "/sample_", sample_id, "__gene_", outlier_lead, "__summary.tsv"))
+  
+  # Show short summary table & long summary table
+  
+  # kable(summary[1:8], digits = 2) # there were only 5 columns
+  kable(summary, digits = 2)
+}
+```

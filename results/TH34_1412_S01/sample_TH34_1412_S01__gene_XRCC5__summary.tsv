@@ -1,0 +1,6 @@
+Sample	Gene	Cohort	Expression	Threshold	Exceeds threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1412_S01	XRCC5	Pan-cancer	8.61342114815	8.57065916061401	TRUE	0.49645764209699583	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1412_S01	XRCC5	Same Disease	8.61342114815	8.47541177272797	TRUE	1.6022596950535914	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1412_S01	XRCC5	Inferred Disease	8.61342114815	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1412_S01	XRCC5	First Degree	8.61342114815	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1412_S01	XRCC5	First & Second Degree	8.61342114815	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA

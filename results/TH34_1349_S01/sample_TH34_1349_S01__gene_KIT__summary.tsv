@@ -1,0 +1,6 @@
+Sample	Gene	Cohort	Expression	Threshold	Exceeds threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1349_S01	KIT	Pan-cancer	8.93705007871	5.85163629055023	TRUE	34.523850274822756	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1349_S01	KIT	Same Disease	8.93705007871	4.75686256587505	TRUE	46.77368344162093	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1349_S01	KIT	Inferred Disease	8.93705007871	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1349_S01	KIT	First Degree	8.93705007871	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1349_S01	KIT	First & Second Degree	8.93705007871	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA

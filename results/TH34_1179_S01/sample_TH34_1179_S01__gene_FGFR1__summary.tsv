@@ -1,0 +1,6 @@
+Sample	Gene	Cohort	Expression	Threshold	Exceeds threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1179_S01	FGFR1	Pan-cancer	9.40422618928	9.25280141830444	TRUE	1.6101778915969767	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1179_S01	FGFR1	Same Disease	9.40422618928	6.60425093770027	TRUE	29.773584718447733	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1179_S01	FGFR1	Inferred Disease	9.40422618928	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1179_S01	FGFR1	First Degree	9.40422618928	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1179_S01	FGFR1	First & Second Degree	9.40422618928	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA

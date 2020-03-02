@@ -1,0 +1,6 @@
+Sample	Gene	Cohort	Expression	Threshold	Exceeds threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1238_S01	BTK	Pan-cancer	8.1860647041	5.7873977124691	TRUE	29.30183278944185	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1238_S01	BTK	Same Disease	8.1860647041	11.3429861664772	FALSE	38.56457988654857	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1238_S01	BTK	Inferred Disease	8.1860647041	11.3429861664772	FALSE	38.56457988654857	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1238_S01	BTK	First Degree	8.1860647041	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1238_S01	BTK	First & Second Degree	8.1860647041	9.85300415754318	FALSE	20.363135568770822	NaN	Inf	-Inf	NA	NA	NA	NA	NA

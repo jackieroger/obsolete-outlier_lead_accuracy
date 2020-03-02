@@ -1,0 +1,6 @@
+Sample	Gene	Cohort	Expression	Threshold	Exceeds threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1349_S02	ETV1	Pan-cancer	8.25493411861	7.30303847789764	TRUE	11.531232436687757	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1349_S02	ETV1	Same Disease	8.25493411861	8.05297935009003	TRUE	2.446473413575541	NaN	Inf	-Inf	NA	NA	NA	NA	NA
+TH34_1349_S02	ETV1	Inferred Disease	8.25493411861	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1349_S02	ETV1	First Degree	8.25493411861	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+TH34_1349_S02	ETV1	First & Second Degree	8.25493411861	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA

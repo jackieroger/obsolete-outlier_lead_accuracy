@@ -1,0 +1,2 @@
+Sample	Gene	Type	Expression	Threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
+TH34_1455_S01	AASDHPPT	Up	6.83	6.24	8.638360175695459	99.71358813854879	99.63547995139733	99.83810037776578	99.66532797858099	99.76744186046511	99.83810037776578	99.66159052453469	99.63547995139733

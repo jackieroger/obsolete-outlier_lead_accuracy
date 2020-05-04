@@ -1,2 +1,2 @@
-Sample	Gene	Type	Expression	Threshold	Percent difference	Mean Accuracy	Minimum Accuracy	Maximum Accuracy	Sample 1 Accuracy	Sample 2 Accuracy	Sample 3 Accuracy	Sample 4 Accuracy	Sample 5 Accuracy
-TH34_2292_S01	P2RY11	Up	5.47	5.46	0.18281535648994127	7.6202628202419	6.50296815974096	8.737541528239202	8.266398929049531	8.737541528239202	6.50296815974096	7.30400451212634	7.290400972053463
+Sample	Gene	Type	Expression	Threshold	Percent difference	Probability >= 0.95	Probability of being an outlier	Minimum Probability	Maximum Probability	Sample 1 Probability	Sample 2 Probability	Sample 3 Probability	Sample 4 Probability	Sample 5 Probability
+TH34_2292_S01	P2RY11	Up	5.47	5.46	0.18281535648994127	FALSE	0.07620262820241899	0.0650296815974096	0.08737541528239202	0.08266398929049532	0.08737541528239202	0.0650296815974096	0.0730400451212634	0.07290400972053462

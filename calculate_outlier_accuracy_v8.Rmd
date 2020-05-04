@@ -17,8 +17,7 @@ library(dplyr)
 library(tidyr)
 library(knitr)
 library(stringr)
-
-setwd("/Users/jacquelynroger/Documents/research/treehouse/projects/outlier_lead_accuracy")
+library(tibble)
 
 ```
 
@@ -32,7 +31,7 @@ The purpose of this Rmd is to quantify the accuracy of outlier leads.
 
 # Sample-specific data
 
-test_input <- read_tsv(paste0("test_input.tsv"), col_types = cols())
+test_input <- read_tsv(paste0("test_input_single.tsv"), col_types = cols())
 
 sample_id <- test_input$Sample
 outlier_lead <- test_input$Gene
@@ -179,19 +178,26 @@ summary <- summary %>%
 
 ```{r echo = TRUE}
 
+# Change values from 0-100 scale to 0-1 scale
+summary[7:ncol(summary)] <- summary[7:ncol(summary)]/100
+
+# Add column that checks if probability >= 0.95
+summary <- add_column(summary, prob95 = summary$avg >= 0.95, .after = "percent_difference")
+
 # Clean up names for writing to outfile
 
 names(summary) <- gsub("_", " ", str_to_sentence(names(summary)))
 
 summary <- summary %>%
-  rename("Mean Accuracy" = Avg,
-         "Minimum Accuracy" = Min,
-         "Maximum Accuracy" = Max,
-         "Sample 1 Accuracy" = S1,
-         "Sample 2 Accuracy" = S2,
-         "Sample 3 Accuracy" = S3,
-         "Sample 4 Accuracy" = S4,
-         "Sample 5 Accuracy" = S5)
+  rename("Probability >= 0.95" = Prob95,
+         "Probability of being an outlier" = Avg,
+         "Minimum Probability" = Min,
+         "Maximum Probability" = Max,
+         "Sample 1 Probability" = S1,
+         "Sample 2 Probability" = S2,
+         "Sample 3 Probability" = S3,
+         "Sample 4 Probability" = S4,
+         "Sample 5 Probability" = S5)
 
 # Write to outfile
 
@@ -199,7 +205,7 @@ write_tsv(summary, paste0("results/", sample_id, "/sample_", sample_id, "__gene_
 
 # Show short summary table & long summary table
 
-kable(summary[1:7], digits = 2)
-kable(summary, digits = 2)
+kable(summary[1:8], digits = 4)
+kable(summary, digits = 4)
 
 ```

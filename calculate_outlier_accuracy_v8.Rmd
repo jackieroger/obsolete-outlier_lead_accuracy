@@ -179,9 +179,11 @@ summary <- summary %>%
 ```{r echo = TRUE}
 
 # Change values from 0-100 scale to 0-1 scale
+
 summary[7:ncol(summary)] <- summary[7:ncol(summary)]/100
 
 # Add column that checks if probability >= 0.95
+
 summary <- add_column(summary, prob95 = summary$avg >= 0.95, .after = "percent_difference")
 
 # Clean up names for writing to outfile

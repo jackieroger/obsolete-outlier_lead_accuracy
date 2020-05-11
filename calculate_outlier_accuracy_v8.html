@@ -179,7 +179,7 @@ summary {
 
 <h1 class="title toc-ignore">Accuracy of gene expression measurements</h1>
 <h4 class="author">Jackie Roger &amp; Holly Beale</h4>
-<h4 class="date">27 April, 2020</h4>
+<h4 class="date">11 May, 2020</h4>
 
 </div>
 
@@ -192,7 +192,7 @@ summary {
 <h3>Read in data</h3>
 <pre class="r"><code># Sample-specific data
 
-test_input &lt;- read_tsv(paste0(&quot;test_input.tsv&quot;), col_types = cols())
+test_input &lt;- read_tsv(paste0(&quot;test_input_single.tsv&quot;), col_types = cols())
 
 sample_id &lt;- test_input$Sample
 outlier_lead &lt;- test_input$Gene
@@ -323,19 +323,28 @@ summary &lt;- summary %&gt;%
 </div>
 <div id="write-summary-to-tsv-and-show-tables" class="section level3">
 <h3>Write summary to tsv and show tables</h3>
-<pre class="r"><code># Clean up names for writing to outfile
+<pre class="r"><code># Change values from 0-100 scale to 0-1 scale
+
+summary[7:ncol(summary)] &lt;- summary[7:ncol(summary)]/100
+
+# Add column that checks if probability &gt;= 0.95
+
+summary &lt;- add_column(summary, prob95 = summary$avg &gt;= 0.95, .after = &quot;percent_difference&quot;)
+
+# Clean up names for writing to outfile
 
 names(summary) &lt;- gsub(&quot;_&quot;, &quot; &quot;, str_to_sentence(names(summary)))
 
 summary &lt;- summary %&gt;%
-  rename(&quot;Mean Accuracy&quot; = Avg,
-         &quot;Minimum Accuracy&quot; = Min,
-         &quot;Maximum Accuracy&quot; = Max,
-         &quot;Sample 1 Accuracy&quot; = S1,
-         &quot;Sample 2 Accuracy&quot; = S2,
-         &quot;Sample 3 Accuracy&quot; = S3,
-         &quot;Sample 4 Accuracy&quot; = S4,
-         &quot;Sample 5 Accuracy&quot; = S5)
+  rename(&quot;Probability &gt;= 0.95&quot; = Prob95,
+         &quot;Probability of being an outlier&quot; = Avg,
+         &quot;Minimum Probability&quot; = Min,
+         &quot;Maximum Probability&quot; = Max,
+         &quot;Sample 1 Probability&quot; = S1,
+         &quot;Sample 2 Probability&quot; = S2,
+         &quot;Sample 3 Probability&quot; = S3,
+         &quot;Sample 4 Probability&quot; = S4,
+         &quot;Sample 5 Probability&quot; = S5)
 
 # Write to outfile
 
@@ -343,7 +352,7 @@ write_tsv(summary, paste0(&quot;results/&quot;, sample_id, &quot;/sample_&quot;,
 
 # Show short summary table &amp; long summary table
 
-kable(summary[1:7], digits = 2)</code></pre>
+kable(summary[1:8], digits = 4)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -353,7 +362,8 @@ kable(summary[1:7], digits = 2)</code></pre>
 <th align="right">Expression</th>
 <th align="right">Threshold</th>
 <th align="right">Percent difference</th>
-<th align="right">Mean Accuracy</th>
+<th align="left">Probability &gt;= 0.95</th>
+<th align="right">Probability of being an outlier</th>
 </tr>
 </thead>
 <tbody>
@@ -363,12 +373,13 @@ kable(summary[1:7], digits = 2)</code></pre>
 <td align="left">Up</td>
 <td align="right">5.47</td>
 <td align="right">5.46</td>
-<td align="right">0.18</td>
-<td align="right">7.62</td>
+<td align="right">0.1828</td>
+<td align="left">FALSE</td>
+<td align="right">0.0762</td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>kable(summary, digits = 2)</code></pre>
+<pre class="r"><code>kable(summary, digits = 4)</code></pre>
 <table>
 <thead>
 <tr class="header">
@@ -378,14 +389,15 @@ kable(summary[1:7], digits = 2)</code></pre>
 <th align="right">Expression</th>
 <th align="right">Threshold</th>
 <th align="right">Percent difference</th>
-<th align="right">Mean Accuracy</th>
-<th align="right">Minimum Accuracy</th>
-<th align="right">Maximum Accuracy</th>
-<th align="right">Sample 1 Accuracy</th>
-<th align="right">Sample 2 Accuracy</th>
-<th align="right">Sample 3 Accuracy</th>
-<th align="right">Sample 4 Accuracy</th>
-<th align="right">Sample 5 Accuracy</th>
+<th align="left">Probability &gt;= 0.95</th>
+<th align="right">Probability of being an outlier</th>
+<th align="right">Minimum Probability</th>
+<th align="right">Maximum Probability</th>
+<th align="right">Sample 1 Probability</th>
+<th align="right">Sample 2 Probability</th>
+<th align="right">Sample 3 Probability</th>
+<th align="right">Sample 4 Probability</th>
+<th align="right">Sample 5 Probability</th>
 </tr>
 </thead>
 <tbody>
@@ -395,15 +407,16 @@ kable(summary[1:7], digits = 2)</code></pre>
 <td align="left">Up</td>
 <td align="right">5.47</td>
 <td align="right">5.46</td>
-<td align="right">0.18</td>
-<td align="right">7.62</td>
-<td align="right">6.5</td>
-<td align="right">8.74</td>
-<td align="right">8.27</td>
-<td align="right">8.74</td>
-<td align="right">6.5</td>
-<td align="right">7.3</td>
-<td align="right">7.29</td>
+<td align="right">0.1828</td>
+<td align="left">FALSE</td>
+<td align="right">0.0762</td>
+<td align="right">0.065</td>
+<td align="right">0.0874</td>
+<td align="right">0.0827</td>
+<td align="right">0.0874</td>
+<td align="right">0.065</td>
+<td align="right">0.073</td>
+<td align="right">0.0729</td>
 </tr>
 </tbody>
 </table>
